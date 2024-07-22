@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function Results({ results }) {
   const [expandedIndex, setExpandedIndex] = useState(null);
 
-  if (!results || !results.results || results.results.length === 0) {
+  if (!results || results.length === 0) {
     return (
       <motion.div
         className="bg-white rounded-lg shadow-lg p-6"
@@ -28,7 +28,7 @@ export default function Results({ results }) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {results.results.map((fact, index) => (
+      {results.map((fact, index) => (
         <motion.div
           key={index}
           className="bg-white rounded-lg shadow-lg overflow-hidden"
