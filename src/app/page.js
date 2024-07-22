@@ -20,7 +20,7 @@ export default function Home() {
       </Head>
 
       <main className="flex-grow container mx-auto px-4 py-12">
-        <h1 className="text-5xl font-bold text-gray-800 text-center mb-12">Debunked Facts</h1>
+        <h1 className="text-5xl font-bold text-gray-800 text-center mb-12">Outdated Facts</h1>
         <YearForm setResults={setResults} setLoading={setLoading} />
         {loading && <LoadingScreen />}
         {results && (

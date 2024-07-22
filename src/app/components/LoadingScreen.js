@@ -19,7 +19,7 @@ export default function LoadingScreen() {
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
         ></motion.div>
-        <p className="mt-4 text-lg font-semibold text-gray-700">Discovering debunked facts...</p>
+        <p className="mt-4 text-lg font-semibold text-gray-700">Discovering outdated facts...</p>
       </motion.div>
     </motion.div>
   );
