@@ -20,7 +20,7 @@ function tryParseJSON(text) {
 }
 
 export async function generateContent(year) {
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   const prompt = `Provide a list of 10 scientific, historical, or widely accepted concepts that were considered factual or true and TAUGHT IN SCHOOLS up to ${year} (inclusive) but have been ENTIRELY disproven or completely revised AFTER ${year}. Return the results in the following JSON format:
 
