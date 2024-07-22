@@ -42,7 +42,7 @@ export default function YearForm({ setResults, setLoading }) {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Discover Debunked Facts
+          Discover Outdated Facts
         </motion.button>
       </div>
     </motion.form>

@@ -2,6 +2,24 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
 
+function tryParseJSON(text) {
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    console.error("Initial JSON parse failed, attempting to fix the JSON string");
+    // Try to extract the JSON object from the text
+    const match = text.match(/\{[\s\S]*\}/);
+    if (match) {
+      try {
+        return JSON.parse(match[0]);
+      } catch (e) {
+        console.error("Failed to parse extracted JSON");
+      }
+    }
+    return null;
+  }
+}
+
 export async function generateContent(year) {
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
@@ -24,10 +42,13 @@ export async function generateContent(year) {
   const result = await model.generateContent(prompt);
   const response = await result.response;
   const text = response.text();
-  try {
-    return JSON.parse(text);
-  } catch (error) {
-    console.error('Error parsing JSON:', error);
+  
+  const parsedData = tryParseJSON(text);
+  
+  if (parsedData && parsedData.results) {
+    return parsedData;
+  } else {
+    console.error('Failed to parse or extract valid JSON from the response');
     return { results: [] };
   }
 }
